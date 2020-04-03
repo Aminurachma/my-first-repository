@@ -1,0 +1,7 @@
+library(dplyr)
+library(lubridate)
+dataset <- read.csv('D:/TugasDM/AssessmentR_Dataset_superstore_simple.csv')
+ini <- data.frame(year=c(substr(coba[order(as.Date(coba$order_date, format="%d/%m/%Y")),],1,4)))
+new_dataset <- cbind(dataset, ini) 
+yearly_sales <- new_dataset %>% filter(year %in% c("2014","2015","2016","2017")) %>% group_by(year) %>% summarise(Total_Sales=sum(sales),Total_Customer = n(),Total_Profit=sum(profit))
+provitmax <- filter(yearly_sales, Total_Profit == max(Total_Profit))
